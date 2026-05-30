@@ -113,7 +113,7 @@
             margin: 40px auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
         }
 
@@ -258,8 +258,92 @@
         }
 
         @media (max-width: 600px) {
-            header h1 { font-size: 2.5rem; }
-            .price-badge { font-size: 1.5rem; }
+            header {
+                padding: 3rem 1.25rem 2.5rem;
+            }
+
+            .brand-link {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .price-badge {
+                font-size: 1.4rem;
+                padding: 10px 22px;
+            }
+
+            .catalog-container {
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+
+            .game-card {
+                border-radius: 10px;
+            }
+
+            .image-wrapper {
+                height: 180px;
+            }
+
+            .game-info {
+                padding: 1.3rem;
+            }
+
+            .game-title {
+                font-size: 1.3rem;
+            }
+
+            .game-desc {
+                font-size: 0.9rem;
+                margin-bottom: 18px;
+            }
+
+            .btn-buy {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+
+            .platform-badge {
+                bottom: 12px;
+                right: 12px;
+                padding: 5px 12px;
+                font-size: 0.78rem;
+            }
+
+            .purchase-counter {
+                right: 12px;
+                left: 12px;
+                bottom: 12px;
+                max-width: none;
+                padding: 0.8rem 0.95rem;
+                font-size: 0.84rem;
+            }
+
+            .purchase-counter strong {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 3rem 1.25rem;
+            }
+
+            footer p {
+                font-size: 0.9rem;
+            }
+
+            .footer-logo .brand-link {
+                font-size: 1.1rem;
+            }
         }
 
         .purchase-counter {
