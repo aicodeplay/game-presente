@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Presente | CodePlay Games</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Paleta de Cores Gamer / Dark Mode */
+        :root {
+            --bg-body: #0b0c10;
+            --bg-card: #1f2833;
+            --primary-glow: #66fcf1;
+            --secondary-glow: #45f3ff;
+            --accent: #ff007f;
+            --text-main: #ffffff;
+            --text-muted: #c5c6c7;
+            --whatsapp-green: #00ff66;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Header / Estilo Cyberpunk Gaming */
+        header {
+            position: relative;
+            background: linear-gradient(180deg, #12121a 0%, var(--bg-body) 100%);
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+            border-bottom: 2px solid #1f2833;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--primary-glow), var(--accent));
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .brand-link {
+            color: var(--primary-glow);
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 8px rgba(102, 252, 241, 0.4);
+        }
+
+        .brand-link:hover {
+            color: var(--accent);
+            text-shadow: 0 0 12px var(--accent);
+        }
+
+        header h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+        }
+
+        /* Badge de Preço Gamer */
+        .price-badge {
+            display: inline-block;
+            background: rgba(255, 0, 127, 0.1);
+            border: 2px solid var(--accent);
+            color: var(--text-main);
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+            transform: skewX(-10deg);
+            animation: neonPulse 2s infinite alternate;
+        }
+
+        /* Grid do Catálogo */
+        .catalog-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Cards Estilo Setup Gaming */
+        .game-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2e3944;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-glow);
+            box-shadow: 0 10px 25px rgba(102, 252, 241, 0.15);
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background-color: #121214;
+        }
+
+        .game-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-image {
+            transform: scale(1.05);
+        }
+
+        /* Badge de Compatibilidade */
+        .platform-badge {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(11, 12, 16, 0.85);
+            border: 1px solid var(--primary-glow);
+            color: var(--primary-glow);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+        }
+
+        .game-info {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .game-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .game-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Botão de Ação Estilo Cyber */
+        .btn-buy {
+            display: block;
+            text-align: center;
+            background: transparent;
+            color: var(--whatsapp-green);
+            border: 2px solid var(--whatsapp-green);
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 102, 0.1);
+        }
+
+        .btn-buy:hover {
+            background: var(--whatsapp-green);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #050507;
+            border-top: 1px solid #1f2833;
+            margin-top: 4rem;
+        }
+
+        footer .footer-logo {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        footer .contact-info {
+            color: var(--primary-glow);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        /* Animações */
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+                border-color: var(--accent);
+            }
+            100% {
+                box-shadow: 0 0 22px rgba(255, 0, 127, 0.6);
+                border-color: #ff55a5;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.5rem; }
+            .price-badge { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Canal do Youtube Linkado -->
+        <a href="https://www.youtube.com/@CodePlayGamesYT" target="_blank" class="brand-link">
+            ⚡ CodePlay Games
+        </a>
+        <h1>Game Presente</h1>
+        <p>Presenteie! Você pode adqurir jogos feito por IA! Personalizados!  O presente ideal, interativo e inesquecível.</p>
+        <div class="price-badge">APENAS R$ 1,00 POR JOGO</div>
+    </header>
+
+    <!-- Catálogo Dinâmico -->
+    <main class="catalog-container" id="catalog"></main>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="https://www.youtube.com/@CodePlayGamesYT" target="_blank" class="brand-link" style="font-size: 1.3rem;">
+                CodePlay Games
+            </a>
+        </div>
+        <p>Escolha o jogo, clique no botão e me envie os nomes para a personalização!</p>
+        <p class="contact-info">🎮 WhatsApp: (11) 93482-7251</p>
+    </footer>
+
+    <script>
+        // Lógica de expansão dos jogos
+        const gamesData = [
+            {
+                title: "Subnautica - Nomes Profundos",
+                image: "Capa.png",
+                compatibility: "💻 PC & 📱 Celular",
+                description: "Explore as profundezas do oceano em uma missão especial! O jogador pilota um submarino avançado e até o icônico navio de One Piece para encontrar letras brilhantes espalhadas pelo mar. O objetivo? Reunir as letras para formar o nome da criança e de seus parentes queridos! Funciona perfeitamente direto no navegador do PC ou do celular.",
+                whatsappMessage: "Olá! Vi no site o jogo 'Subnautica - Nomes Profundos' por R$ 1,00 e quero encomendar um personalizado!"
+            }
+            // Para adicionar novos jogos, basta colar novos blocos aqui separados por vírgula.
+        ];
+
+        const myWhatsApp = "5511934827251";
+        const catalogElement = document.getElementById('catalog');
+
+        gamesData.forEach(game => {
+            const encodedMessage = encodeURIComponent(game.whatsappMessage);
+            const waLink = `https://wa.me/${myWhatsApp}?text=${encodedMessage}`;
+
+            const cardHTML = `
+                <div class="game-card">
+                    <div class="image-wrapper">
+                        <img src="${game.image}" alt="${game.title}" class="game-image" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800'">
+                        <span class="platform-badge">${game.compatibility}</span>
+                    </div>
+                    <div class="game-info">
+                        <h2 class="game-title">${game.title}</h2>
+                        <p class="game-desc">${game.description}</p>
+                        <a href="${waLink}" target="_blank" class="btn-buy">⚡ ADQUIRIR POR R$ 1,00</a>
+                    </div>
+                </div>
+            `;
+            catalogElement.innerHTML += cardHTML;
+        });
+    </script>
+
+</body>
+</html>
